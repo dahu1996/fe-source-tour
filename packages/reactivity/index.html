@@ -6,5 +6,31 @@
 </head>
 <body>
   <div id="app"></div>
+  <script>
+    const obj = new Proxy(
+    //   {
+    //   name: 'andrewguy',
+    //   hobbies: ['reading'],
+    //   job: {
+    //     level: '0',
+    //     title: 'software engineer',
+    //   },
+    // },\
+      ['reading'],
+      {
+      get(target, key) {
+        console.log(`获得key: ${key}`);
+        return Reflect.get(target, key);
+      },
+      set(target, key, value) {
+        console.log(`设置key: ${key} 的值为: ${value}`);
+        return Reflect.set(target, key, value);
+      },
+
+    });
+    obj.push('hello world');
+    // obj.hobbies.push('playing');
+    // obj.job.title;
+  </script>
 </body>
 </html>
